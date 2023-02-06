@@ -2,7 +2,7 @@
 @import './example';
 
 .wrapper {
-  background-color: rgb(48, 9, 100);
+  background-color: rgb(33, 6, 153);
   height: 70px;
   display: flex;
   justify-content: center;
@@ -92,9 +92,9 @@
   margin: 10px 20px;
   padding: 10px 30px;
   position: relative;
-  border: 2px solid #800ff1;
+  border: 2px solid rgb(33, 6, 153);
 
-  color: #800ff1;
+  color: rgb(33, 6, 153);
   font-family: 'Montserrat', sans-serif;
   transition: 0.4s;
   cursor: pointer;
@@ -113,7 +113,7 @@
   transition: 0.4s;
 }
 .load-more:hover:after {
-  border-color: #800ff1;
+  border-color: rgb(33, 6, 153);
 }
 
 .is-hidden {
@@ -124,7 +124,7 @@
   position: absolute;
   top: 257px;
   left: 35%;
-  color: rgb(90, 0, 255);
+  color: rgb(33, 6, 153);
 }
 .spinner.is-hidden {
   display: none;
@@ -163,7 +163,7 @@
   font-size: 40px;
   z-index: 10;
   cursor: pointer;
-  color: rgb(90, 0, 255);
+  color: rgb(33, 6, 153);
 }
 
 .is-show {
