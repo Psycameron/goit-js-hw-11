@@ -83,6 +83,12 @@
 .info {
   display: flex;
   text-align: center;
+  justify-content: space-around;
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .load-more {
@@ -91,10 +97,11 @@
   margin: 10px 20px;
   padding: 10px 20px;
   position: relative;
-  border: 4px solid rgb(41, 7, 192);
   border-radius: 8px;
+  border-color: transparent;
 
-  color: rgb(41, 7, 192);
+  color: white;
+  background-color: rgb(30, 4, 148);
   font-weight: 700;
   cursor: pointer;
 }
