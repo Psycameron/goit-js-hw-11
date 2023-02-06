@@ -1,5 +1,4 @@
 @import './common';
-@import './example';
 
 .wrapper {
   position: sticky;
@@ -96,7 +95,6 @@
   border-radius: 8px;
 
   color: rgb(41, 7, 192);
-  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   cursor: pointer;
 }
