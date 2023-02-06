@@ -2,7 +2,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import cards from './templates/cards.hbs';
-import { API_KEY, fetchImg, page } from './js/fetchImg';
+import { fetchImg } from './js/fetchImg';
 
 const refs = {
   input: document.querySelector('.input'),
@@ -13,13 +13,15 @@ const refs = {
 
 let pageNumber = 1;
 let perPage = 40;
-let lightbox = new SimpleLightbox('.gallery a');
+let lightbox = new SimpleLightbox('.gallery a', {
+  captionDelay: 250,
+});
 
 refs.gallery.addEventListener('click', e => {
   e.preventDefault();
 });
 refs.form.addEventListener('submit', onSubmit);
-refs.loadBtn.addEventListener('click', loadMore);
+refs.loadBtn.addEventListener('click', onLoadMore);
 
 async function onSubmit(e) {
   e.preventDefault();
@@ -27,15 +29,16 @@ async function onSubmit(e) {
   refs.gallery.innerHTML = '';
   const value = refs.input.value;
   if (!value) {
+    hideLoadBtn();
     return Notify.failure('Please enter any word!');
   }
-  onHideLoadBtn();
+  hideLoadBtn();
   const data = await fetchImg(value, pageNumber, perPage);
   const { hits, totalHits } = data;
 
-  onShowLoadBtn();
+  showLoadBtn();
   if (!totalHits) {
-    onHideLoadBtn();
+    hideLoadBtn();
     return Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
@@ -46,28 +49,28 @@ async function onSubmit(e) {
   }
 
   if (totalHits > perPage) {
-    onShowLoadBtn();
+    showLoadBtn();
   }
   if (hits.length < perPage) {
-    onHideLoadBtn();
+    hideLoadBtn();
   }
   lightbox.refresh();
 }
 
-async function loadMore() {
+async function onLoadMore() {
   const value = refs.input.value;
   pageNumber += 1;
-  onHideLoadBtn();
+  hideLoadBtn();
 
   const data = await fetchImg(value, pageNumber, perPage);
 
-  onShowLoadBtn();
+  showLoadBtn();
   const { hits, totalHits } = data;
   const items = createItemGallery(hits);
   refs.gallery.insertAdjacentHTML('beforeend', items);
   scroll();
   if (hits.length < perPage) {
-    onHideLoadBtn();
+    hideLoadBtn();
     Notify.info("We're sorry, but you've reached the end of search results.");
   }
   lightbox.refresh();
@@ -77,10 +80,10 @@ function createItemGallery(items) {
   return items.map(cards).join('');
 }
 
-function onShowLoadBtn() {
+function showLoadBtn() {
   refs.loadBtn.classList.remove('is-hidden');
 }
 
-function onHideLoadBtn() {
+function hideLoadBtn() {
   refs.loadBtn.classList.add('is-hidden');
 }
