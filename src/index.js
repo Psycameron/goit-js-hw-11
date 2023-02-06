@@ -12,3 +12,11 @@ const refs = {
   spinner: document.querySelector('.preloader'),
   scrollBtn: document.querySelector('#scroll-top'),
 };
+
+let pageNumber = 1;
+let perPage = 40;
+let lightbox = new SimpleLightbox('.gallery a');
+
+if (refs.input.value === '') {
+  spinnerOff();
+}

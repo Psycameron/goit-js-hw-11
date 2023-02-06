@@ -155,21 +155,3 @@
 .loaded .preloader {
   display: none;
 }
-
-#scroll-top {
-  position: fixed;
-  bottom: 100px;
-  right: 70px;
-  font-size: 40px;
-  z-index: 10;
-  cursor: pointer;
-  color: rgb(33, 6, 153);
-}
-
-.is-show {
-  opacity: 1;
-  transition: all 0.4s ease;
-  &_off {
-    opacity: 0;
-  }
-}
