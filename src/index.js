@@ -11,6 +11,8 @@ const refs = {
   loadBtn: document.querySelector('.load-more'),
 };
 
+console.log(refs.form);
+
 let pageNumber = 1;
 let perPage = 40;
 let lightbox = new SimpleLightbox('.gallery a', {
@@ -86,4 +88,15 @@ function showLoadBtn() {
 
 function hideLoadBtn() {
   refs.loadBtn.classList.add('is-hidden');
+}
+
+function scroll() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
